@@ -4,39 +4,15 @@
         "@schema": "terminusdb:///schema#",
         "@type": "@context"
     },
+
     {
-        "@documentation": {
-            "@comment": "",
-            "@properties": {
-                "content": "text content"
-            }
-        },
-        "@id": "DiplomaticText",
-        "@key": {
-            "@type": "Random"
-        },
         "@type": "Class",
-        "author": {
-            "@class": "xsd:string",
-            "@type": "Set"
-        },
-        "content": "xsd:string",
-        "title": {
-            "@class": "xsd:string",
-            "@type": "Set"
-        }
-    },
-    {
-        "@id": "OpenText",
-        "@key": {
-            "@type": "Random"
-        },
-        "@type": "Class"
-    },
-    {
         "@id": "Work",
         "@key": {
-            "@type": "Random"
+            "@fields": [
+                "title"
+            ],
+            "@type": "Lexical"
         },
         "@metadata": {
             "order_by": [
@@ -47,15 +23,109 @@
                 "open_text_instances"
             ]
         },
-        "@type": "Class",
+        "title": {
+            "@class": "xsd:string",
+            "@type": "Set"
+        },
         "author": {
             "@class": "xsd:string",
             "@type": "Set"
         },
         "bdrc_work_id": "xsd:string",
-        "title": {
+        "diplomatic_instance": {
+            "@class": "DiplomaticText",
+            "@type": "Set"
+        },
+        "open_instance": {
+            "@class": "OpenText",
+            "@type": "Set"
+        },
+        "@documentation": {
+            "@comment": "",
+            "@properties": {
+                "diplomatic_instance": "Diplomatic Edition",
+                "open_instance": "Open Edition"
+            }
+        }
+    },
+    {
+        "@id": "ChunkType",
+        "@type": "Enum",
+        "@value": [
+            "Page",
+            "Default"
+        ],
+        "@documentation": {
+            "@comment": "Type of Chunk"
+        }
+    },
+    {
+        "@id": "TextChunk",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class",
+        "content": "xsd:string",
+        "type": {
+            "@class": "ChunkType",
+            "@type": "Optional"
+        },
+        "@documentation": {
+            "@comment": "Text Chunk",
+            "@properties": {
+                "content": "Content"
+            }
+        }
+    },
+    {
+        "@type": "Class",
+        "@id": "Text",
+        "@abstract" : [],
+        "@key": {
+            "@fields": [
+                "title"
+            ],
+            "@type": "Lexical"
+        },
+        "author": {
             "@class": "xsd:string",
             "@type": "Set"
+        },
+        "content": {
+            "@class": "TextChunk",
+            "@dimensions": 1,
+            "@type": "Array"
+        },
+        "title": "xsd:string",
+        "@documentation": {
+            "@comment": "",
+            "@properties": {
+                "author": "Author",
+                "content": "Content",
+                "title": "Title"
+            }
+        }
+    },
+    {
+        "@type": "Class",
+        "@id": "DiplomaticText",
+        "@inherits": "Text",
+        "@key": {
+            "@fields": [
+                "title"
+            ],
+            "@type": "Lexical"
+        }
+    },
+    {
+        "@type": "Class",
+        "@id": "OpenText",
+        "@inherits": "Text",
+        "@key": {
+            "@fields": [
+                "title"
+            ],
+            "@type": "Lexical"
         }
     }
 ]
