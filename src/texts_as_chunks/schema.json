@@ -1,0 +1,61 @@
+[
+    {
+        "@base": "terminusdb:///data/",
+        "@schema": "terminusdb:///schema#",
+        "@type": "@context"
+    },
+    {
+        "@documentation": {
+            "@comment": "",
+            "@properties": {
+                "content": "text content"
+            }
+        },
+        "@id": "DiplomaticText",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class",
+        "author": {
+            "@class": "xsd:string",
+            "@type": "Set"
+        },
+        "content": "xsd:string",
+        "title": {
+            "@class": "xsd:string",
+            "@type": "Set"
+        }
+    },
+    {
+        "@id": "OpenText",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class"
+    },
+    {
+        "@id": "Work",
+        "@key": {
+            "@type": "Random"
+        },
+        "@metadata": {
+            "order_by": [
+                "title",
+                "author",
+                "bdrc_work_id",
+                "diplomatic_text_instances",
+                "open_text_instances"
+            ]
+        },
+        "@type": "Class",
+        "author": {
+            "@class": "xsd:string",
+            "@type": "Set"
+        },
+        "bdrc_work_id": "xsd:string",
+        "title": {
+            "@class": "xsd:string",
+            "@type": "Set"
+        }
+    }
+]
