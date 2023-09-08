@@ -1,0 +1,205 @@
+[
+    {
+        "@base": "terminusdb:///data/",
+        "@schema": "terminusdb:///schema#",
+        "@type": "@context",
+        "dbo": "http://dbpedia.org/ontology/",
+        "dbr": "http://dbpedia.org/resource/",
+        "dct": "http://purl.org/dc/terms/",
+        "decomp": "http://www.w3.org/ns/lemon/decomp#",
+        "lexinfo": "http://www.lexinfo.net/ontology/2.0/lexinfo#",
+        "lime": "http://www.w3.org/ns/lemon/lime#",
+        "oils": "http://lemon-model.net/oils#",
+        "ontolex": "http://www.w3.org/ns/lemon/ontolex#",
+        "owl": "http://www.w3.org/2002/07/owl#",
+        "provo": "http://www.w3.org/ns/prov#",
+        "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+        "semiotics": "http://www.ontologydesignpatterns.org/cp/owl/semiotics.owl#",
+        "skos": "http://www.w3.org/2004/02/skos#",
+        "synsem": "http://www.w3.org/ns/lemon/synsem#",
+        "vartrans": "http://www.w3.org/ns/lemon/vartrans#",
+        "void": "http://rdfs.org/ns/void#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+    },
+    {
+        "@documentation": {
+            "@comment": "Lexical Sense"
+        },
+        "@id": "LexicalSense",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class",
+        "dating": {
+            "@class": "xsd:string",
+            "@type": "Optional"
+        },
+        "isLexicalizedSenseOf": {
+            "@class": "LexicalConcept",
+            "@type": "Optional"
+        },
+        "isSenseOf": {
+            "@class": "LexicalEntry",
+            "@type": "Optional"
+        },
+        "reference": {
+            "@class": "xsd:string",
+            "@type": "Optional"
+        },
+        "subject": {
+            "@class": "xsd:string",
+            "@type": "Optional"
+        },
+        "usage": {
+            "@class": "xsd:string",
+            "@type": "Optional"
+        }
+    },
+    {
+        "@documentation": {
+            "@comment": "",
+            "@properties": {
+                "concept": "Concept"
+            }
+        },
+        "@id": "Annotation",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class",
+        "concept": {
+            "@class": "LexicalConcept",
+            "@type": "Optional"
+        },
+        "isDenotedBy": {
+            "@class": "LexicalEntry",
+            "@type": "Optional"
+        },
+        "span_start": {
+            "@class": "xsd:decimal",
+            "@type": "Optional"
+        },
+        "spen_end": {
+            "@class": "xsd:decimal",
+            "@type": "Optional"
+        }
+    },
+    {
+        "@documentation": {
+            "@comment": "Lexical Concept",
+            "@properties": {
+                "lexicalizedSense": "Lexicalized Sense"
+            }
+        },
+        "@id": "LexicalConcept",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class",
+        "isConceptOf": {
+            "@class": "Annotation",
+            "@type": "Optional"
+        },
+        "isEvokedBy": {
+            "@class": "LexicalEntry",
+            "@type": "Optional"
+        },
+        "lexicalizedSense": {
+            "@class": "LexicalSense",
+            "@type": "Optional"
+        }
+    },
+    {
+        "@id": "Affix",
+        "@inherits": "LexicalEntry",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class"
+    },
+    {
+        "@id": "MultiwordExpression",
+        "@inherits": "LexicalEntry",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class"
+    },
+    {
+        "@documentation": {
+            "@comment": "Lexical Entry",
+            "@properties": {
+                "canonicalForm": "Canonical Form",
+                "denotes": "Denotes",
+                "evokes": "Evokes",
+                "lexicalForm": "Lexical Form",
+                "sense": "Sense"
+            }
+        },
+        "@id": "LexicalEntry",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class",
+        "canonicalForm": {
+            "@class": "Form",
+            "@type": "Optional"
+        },
+        "denotes": {
+            "@class": "Annotation",
+            "@type": "Optional"
+        },
+        "evokes": {
+            "@class": "LexicalConcept",
+            "@type": "Optional"
+        },
+        "lexicalForm": {
+            "@class": "Form",
+            "@type": "Optional"
+        },
+        "sense": {
+            "@class": "LexicalSense",
+            "@type": "Optional"
+        }
+    },
+    {
+        "@documentation": {
+            "@comment": "",
+            "@properties": {
+                "phoneticRep": "Phonetic Representation",
+                "writtenRep": "Written Representation"
+            }
+        },
+        "@id": "Form",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class",
+        "phoneticRep": {
+            "@class": "xsd:string",
+            "@type": "Optional"
+        },
+        "writtenRep": {
+            "@class": "xsd:string",
+            "@type": "Set"
+        }
+    },
+    {
+        "@documentation": {
+            "@comment": "Word",
+            "@properties": {
+                "canonicalForm": "Canonical Form",
+                "denotes": "Denotes",
+                "evokes": "Evokes",
+                "lexicalForm": "Lexical Form",
+                "sense": "Sense"
+            }
+        },
+        "@id": "Word",
+        "@inherits": "LexicalEntry",
+        "@key": {
+            "@type": "Random"
+        },
+        "@type": "Class"
+    }
+]
